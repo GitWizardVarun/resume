@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varun Sinha - Resume</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap');
+        
+        :root {
+            --primary: #64ffda;
+            --secondary: #ffcc00;
+            --dark: #0a192f;
+            --darker: #020c1b;
+            --light: #e6f1ff;
+            --accent: #ff5555;
+            --text-shadow: 0 0 15px rgba(100, 255, 218, 0.5);
+            --box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            margin: 0;
+            padding: 0;
+            color: var(--light);
+            animation: fadeIn 1.5s ease-in-out;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .container {
+            background: rgba(2, 12, 27, 0.85);
+            max-width: 1000px;
+            width: 90%;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: var(--box-shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin: 40px 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.8);
+            border-color: rgba(100, 255, 218, 0.3);
+        }
+        
+        /* Decorative elements */
+        .corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-style: solid;
+            border-color: var(--primary);
+            transition: all 0.5s ease;
+            opacity: 0.8;
+        }
+        
+        .top-left {
+            top: 20px;
+            left: 20px;
+            border-width: 2px 0 0 2px;
+        }
+        
+        .top-right {
+            top: 20px;
+            right: 20px;
+            border-width: 2px 2px 0 0;
+        }
+        
+        .bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-width: 0 0 2px 2px;
+        }
+        
+        .bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-width: 0 2px 2px 0;
+        }
+        
+        .container:hover .corner {
+            width: 40px;
+            height: 40px;
+            opacity: 1;
+        }
+        
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            text-shadow: var(--text-shadow);
+            animation: revealText 1s ease forwards, titlePulse 4s infinite alternate;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 8s ease infinite;
+        }
+        
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes revealText {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes titlePulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+        
+        .title-container {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .title-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 100px;
+            background: linear-gradient(45deg, rgba(100, 255, 218, 0.1), rgba(255, 204, 0, 0.1));
+            filter: blur(40px);
+            z-index: -1;
+            border-radius: 50%;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--primary);
+            opacity: 0;
+            animation: fadeIn 1s ease 0.5s forwards;
+            letter-spacing: 1px;
+        }
+        
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 35px 0;
+            animation: slideUp 1s ease 0.8s both;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            position: relative;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(100, 255, 218, 0.05);
+        }
+        
+        .contact-item:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .contact-icon {
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+        
+        .contact a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .contact a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .contact a:hover {
+            color: var(--secondary);
+        }
+        
+        .contact a:hover::after {
+            width: 100%;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+            animation: fadeIn 1s ease 1s both;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 15px 45px;
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--primary);
+            transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+            z-index: -1;
+        }
+        
+        .button:hover {
+            color: var(--dark);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px -10px rgba(100, 255, 218, 0.5);
+        }
+        
+        .button:hover::before {
+            width: 100%;
+        }
+        
+        .resume-content {
+            position: relative;
+        }
+        
+        .vertical-line {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            width: 2px;
+            height: calc(100% - 20px);
+            background: linear-gradient(180deg, 
+                var(--primary) 0%, 
+                rgba(100, 255, 218, 0.3) 50%, 
+                rgba(100, 255, 218, 0.1) 100%);
+            border-radius: 1px;
+        }
+        
+        .section {
+            text-align: left;
+            margin: 70px 0;
+            padding: 40px;
+            background: rgba(100, 255, 218, 0.02);
+            border-radius: 16px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: fadeIn 1s ease 1s both;
+            opacity: 0;
+            transform: translateX(20px);
+            animation-delay: calc(1s + var(--index) * 0.2s);
+            margin-left: 40px;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: -40px;
+            width: 20px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .section::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: -50px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--dark);
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateX(10px) translateY(-5px);
+            background: rgba(100, 255, 218, 0.05);
+            box-shadow: 0 15px 30px -15px rgba(0, 0, 0, 0.7);
+        }
+        
+        .section:hover::after {
+            transform: scale(1.3);
+            background: var(--primary);
+        }
+        
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--light);
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            display: inline-block;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            border-radius: 3px;
+        }
+        
+        .company {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--light);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .date {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            background: rgba(255, 204, 0, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        
+        .job-title {
+            font-style: italic;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+        
+        ul {
+            margin-left: 10px;
+            list-style: none;
+        }
+        
+        li {
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 30px;
+            line-height: 1.7;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+        
+        li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+        
+        li:hover {
+            transform: translateX(5px);
+        }
+        
+        li:hover::before {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+        
+        /* Floating shapes */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(100, 255, 218, 0.1);
+            filter: blur(20px);
+            z-index: -1;
+            animation: float 15s infinite alternate ease-in-out;
+        }
+        
+        .shape-1 {
+            width: 200px;
+            height: 200px;
+            top: -100px;
+            right: -50px;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.15), rgba(255, 204, 0, 0.05));
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 250px;
+            height: 250px;
+            bottom: -100px;
+            left: -100px;
+            background: radial-gradient(circle, rgba(255, 204, 0, 0.1), rgba(100, 255, 218, 0.05));
+            animation-delay: 5s;
+        }
+        
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            top: 30%;
+            left: 10%;
+            background: radial-gradient(circle, rgba(255, 85, 85, 0.1), rgba(100, 255, 218, 0.05));
+            animation-delay: 7s;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(20px, 20px) rotate(5deg); }
+            66% { transform: translate(-20px, 10px) rotate(-5deg); }
+            100% { transform: translate(0, -30px) rotate(0deg); }
+        }
+        
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(2, 12, 27, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .scroll-indicator.visible {
+            opacity: 1;
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-arrow {
+            width: 15px;
+            height: 15px;
+            border-right: 2px solid var(--primary);
+            border-bottom: 2px solid var(--primary);
+            transform: rotate(45deg);
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        /* Cursor effect */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s ease;
+            display: none;
+        }
+        
+        @media (min-width: 1024px) {
+            .cursor {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .container {
+                padding: 30px;
+            }
+            .section {
+                padding: 25px;
+                margin-left: 20px;
+            }
+            .section::before {
+                left: -20px;
+                width: 10px;
+            }
+            .section::after {
+                left: -26px;
+            }
+            .vertical-line {
+                left: 10px;
+            }
+            .company {
+                font-size: 1.5rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .date {
+                margin-top: 10px;
+            }
+            li {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor" id="cursor"></div>
+    <div class="scroll-indicator" id="scrollIndicator">
+        <div class="scroll-arrow"></div>
+    </div>
+    
+    <div class="container">
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+        
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        
+        <div class="title-container">
+            <div class="title-bg"></div>
+            <h1 class="gradient-text">Varun Sinha</h1>
+            <div class="subtitle">Developer & Creative Problem Solver</div>
+        </div>
+        
+        <div class="contact">
+            <div class="contact-item">
+                <span class="contact-icon">📍</span>
+                <span>Bhopal, Madhya Pradesh</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">📧</span>
+                <a href="mailto:varuns9881@gmail.com">varuns9881@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">🔗</span>
+                <a href="https://linkedin.com/in/varun-sinha03" target="_blank">LinkedIn Profile</a>
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <a href="Varun_Sinha_Re_edited.pdf" class="button" download>Download Resume</a>
+        </div>
+        
+        <div class="resume-content">
+            <div class="vertical-line"></div>
+            
+            <div class="section" style="--index: 0;">
+                <h2>Professional Experience</h2>
+                <div class="company">
+                    ETHNUS
+                    <span class="date">Aug 2023 - Nov 2023</span>
+                </div>
+                <div class="job-title">MERN Stack Development Intern (Remote)</div>
+                <ul>
+                    <li>Developed full-stack web applications using React.js, Node.js, Express.js, and MongoDB.</li>
+                    <li>Designed RESTful APIs for seamless front-end & backend communication.</li>
+                    <li>Deployed the application using Vercel.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cursor effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const cursor = document.getElementById('cursor');
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            
+            // Cursor movement
+            document.addEventListener('mousemove', function(e) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+            
+            // Cursor scale effect on hoverable elements
+            const hoverables = document.querySelectorAll('a, .button, .contact-item, li');
+            hoverables.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    cursor.style.border = '1px solid var(--primary)';
+                    cursor.style.backgroundColor = 'rgba(100, 255, 218, 0.1)';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursor.style.border = '2px solid var(--primary)';
+                    cursor.style.backgroundColor = 'transparent';
+                });
+            });
+            
+            // Scroll indicator
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollIndicator.classList.add('visible');
+                } else {
+                    scrollIndicator.classList.remove('visible');
+                }
+                
+                // Reverse arrow direction at bottom of page
+                if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 100) {
+                    document.querySelector('.scroll-arrow').style.transform = 'rotate(-135deg)';
+                } else {
+                    document.querySelector('.scroll-arrow').style.transform = 'rotate(45deg)';
+                }
+            });
+            
+            // Scroll to top/bottom
+            scrollIndicator.addEventListener('click', function() {
+                if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 100) {
+                    // Scroll to top
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Scroll to bottom
+                    window.scrollTo({
+                        top: document.body.offsetHeight,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+            
+            // Reveal sections on scroll
+            const sections = document.querySelectorAll('.section');
+            const revealSection = function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+            
+            const sectionObserver = new IntersectionObserver(revealSection, {
+                root: null,
+                threshold: 0.15
+            });
+            
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+            
+            // Parallax effect
+            document.addEventListener('mousemove', function(e) {
+                const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+                const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+                
+                document.querySelector('.container').style.transform = 
+                    `translateY(-10px) perspective(1000px) rotateX(${moveY}deg) rotateY(${-moveX}deg)`;
+                
+                const shapes = document.querySelectorAll('.shape');
+                shapes.forEach((shape, index) => {
+                    const depth = (index + 1) * 5;
+                    shape.style.transform = `translate(${moveX * depth}px, ${moveY * depth}px)`;
+                });
+                
+                const cornerTL = document.querySelector('.top-left');
+                const cornerTR = document.querySelector('.top-right');
+                const cornerBL = document.querySelector('.bottom-left');
+                const cornerBR = document.querySelector('.bottom-right');
+                
+                cornerTL.style.transform = `translate(${moveX * 3}px, ${moveY * 3}px)`;
+                cornerTR.style.transform = `translate(${-moveX * 3}px, ${moveY * 3}px)`;
+                cornerBL.style.transform = `translate(${moveX * 3}px, ${-moveY * 3}px)`;
+                cornerBR.style.transform = `translate(${-moveX * 3}px, ${-moveY * 3}px)`;
+            });
+            
+            // Glitch text effect on hover
+            const title = document.querySelector('h1');
+            title.addEventListener('mouseenter', function() {
+                title.classList.add('glitch');
+            });
+            
+            title.addEventListener('mouseleave', function() {
+                title.classList.remove('glitch');
+            });
+        });
+    </script>
+</body>
+</html>
